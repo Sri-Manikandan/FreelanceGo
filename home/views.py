@@ -62,7 +62,7 @@ def list_all_jobs(request):
     except:
         pass
     context['jobs'] = Posting.objects.all()
-    return render(request, 'home/list_jobs.html',context)
+    return render(request, 'home/list_all_jobs.html',context)
 
 def job_detail(request,job_id):
     user_id = request.user.id

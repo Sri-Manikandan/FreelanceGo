@@ -56,9 +56,8 @@ def login_view(request):
     context['login_form'] = form
     return render(request, "Account/login.html", context)
 
-def account_view(request, *args, **kwargs):
+def account_view(request, user_id):
     context = {}
-    user_id = kwargs.get("user_id")
     try:
         account = Account.objects.get(pk=user_id)
     except:
@@ -67,7 +66,7 @@ def account_view(request, *args, **kwargs):
         context['id'] = account.id
         context['username'] = account.username
         context['email'] = account.email
-        context['profile_image'] = account.ImageURL
+        context['profile_image'] = account.profile_image.url
         context['hide_email'] = account.hide_email
         # Define template variables
         is_self = True
@@ -78,7 +77,6 @@ def account_view(request, *args, **kwargs):
             is_self = False
         # Set the template variables to the values
         context['is_self'] = is_self
-        context['BASE_URL'] = settings.BASE_URL
         return render(request, "Account/account.html", context)
 
 def edit_account_view(request, *args, **kwargs):
