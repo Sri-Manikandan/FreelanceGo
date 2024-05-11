@@ -10,7 +10,7 @@ from Account.views import (
     login_view,
 )
 
-from home.views import home, job_posting,list_jobs
+from home.views import home, job_posting,list_jobs,list_all_jobs,job_detail
 
 
 urlpatterns = [
@@ -18,6 +18,8 @@ urlpatterns = [
     path('', home, name="home"),
     path('job_posting/', job_posting, name="job_posting"),
     path('list_jobs/', list_jobs, name="list_jobs"),
+    path('list_all_jobs/', list_all_jobs, name="list_all_jobs"),
+    path('job_detail/<int:job_id>/', job_detail, name="job_detail"),
     path('account/', include('Account.urls', namespace='account')),
     path('login/', login_view, name="login"),
     path('logout/', logout_view, name="logout"),

@@ -1,0 +1,36 @@
+{% extends 'home/main.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center">{{ job.title }}</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <img src="{{ job.image.url }}" class="img-fluid" alt="...">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <p>{{ job.abstract }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <p>{{ job.detail_description }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <p>Skills Required: {{ job.skills }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <p>Budget: ${{ job.budget }}</p>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

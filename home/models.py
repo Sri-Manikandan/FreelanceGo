@@ -15,7 +15,8 @@ def get_post_image_filepath(self, filename):
 class Posting(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=200,null=True)
-    description = models.TextField(null=True)
+    abstract = models.TextField(null=True)
+    detail_description = models.TextField(null=True)
     skills = models.CharField(max_length=200,null=True)
     budget = models.CharField(max_length=200,null=True)
     image = models.ImageField(max_length=255,upload_to=get_post_image_filepath,null=True,blank=True)
