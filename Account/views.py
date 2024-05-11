@@ -75,7 +75,7 @@ def account_view(request, *args, **kwargs):
         if user.is_authenticated and user != account:
             is_self = False
         elif not user.is_authenticated:
-            Is_self = False
+            is_self = False
         # Set the template variables to the values
         context['is_self'] = is_self
         context['BASE_URL'] = settings.BASE_URL

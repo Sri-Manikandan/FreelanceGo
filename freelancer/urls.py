@@ -10,12 +10,14 @@ from Account.views import (
     login_view,
 )
 
-from home.views import home
+from home.views import home, job_posting,list_jobs
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home, name="home"),
+    path('job_posting/', job_posting, name="job_posting"),
+    path('list_jobs/', list_jobs, name="list_jobs"),
     path('account/', include('Account.urls', namespace='account')),
     path('login/', login_view, name="login"),
     path('logout/', logout_view, name="logout"),

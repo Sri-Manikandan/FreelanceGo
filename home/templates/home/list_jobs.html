@@ -1,0 +1,26 @@
+{% extends 'home/main.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center">Jobs</h1>
+        </div>
+    </div>
+    <div class="row">
+        {% for job in jobs %}
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card mb-4">
+                <img src="{{ job.image.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ job.title }}</h5>
+                    <p class="card-text">{{ job.description }}</p>
+                    <p class="card-text">Skills Required: {{ job.skills }}</p>
+                    <p class="card-text">Budget: ${{ job.budget }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

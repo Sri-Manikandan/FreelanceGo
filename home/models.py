@@ -8,3 +8,19 @@ class Customer(models.Model):
     phone = models.CharField(max_length=12,null=True,unique=True)
     def __str__(self):
         return self.name
+    
+def get_post_image_filepath(self, filename):
+    return 'post_images/' + str(self.pk) + '/post_image.png'
+    
+class Posting(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True)
+    title = models.CharField(max_length=200,null=True)
+    description = models.TextField(null=True)
+    skills = models.CharField(max_length=200,null=True)
+    budget = models.CharField(max_length=200,null=True)
+    image = models.ImageField(max_length=255,upload_to=get_post_image_filepath,null=True,blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.title
