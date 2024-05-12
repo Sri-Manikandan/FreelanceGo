@@ -5,13 +5,14 @@ from home.models import Posting
 from dotenv import load_dotenv
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings
-from langchain_community.vectorstores import Chroma
+from langchain_community.vectorstores import DeepLake
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
 from langchain_openai import ChatOpenAI
 import os
 load_dotenv()
 user=get_user_model()
+
 openai_api_key = os.getenv('OPENAI_API_KEY')
 def get_pdf_text():
     text = """Problem Statement:
@@ -70,8 +71,9 @@ def get_text_chunks(text):
     return chunks
 
 def get_vectorstore(text_chunks):
+    dataset_path = "./my_deeplake/"
     embeddings = OpenAIEmbeddings()
-    vectorstore = Chroma.from_texts(text_chunks, embedding=embeddings)
+    vectorstore = DeepLake.from_texts(text_chunks,dataset_path=dataset_path, embedding=embeddings)
     return vectorstore
 
 def get_conversation_chain(vectorstore,user_question):
@@ -103,6 +105,7 @@ def home(request):
         vectorstore = get_vectorstore(text_chunks)
         response = get_conversation_chain(vectorstore,user_question)
         context['content'] = response
+        DeepLake.force_delete_by_path("./my_deeplake/")
 
     return render(request, 'home/home.html',context)
 
