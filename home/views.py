@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import get_user_model
 from Account.models import Account
 from home.models import Posting
+from dotenv import load_dotenv
+load_dotenv()
 user=get_user_model()
 
 def home(request):
@@ -61,7 +63,11 @@ def list_all_jobs(request):
             context['profile_image'] = account.ImageURL
     except:
         pass
-    context['jobs'] = Posting.objects.all()
+
+    if request.method == 'POST':
+        context['jobs'] = Posting.objects.filter(title__contains=request.POST['search'])
+    else:
+        context['jobs'] = Posting.objects.all()
     return render(request, 'home/list_all_jobs.html',context)
 
 def job_detail(request,job_id):
@@ -75,3 +81,15 @@ def job_detail(request,job_id):
         pass
     context['job'] = Posting.objects.get(pk=job_id)
     return render(request, 'home/job_detail.html',context)
+
+def ai_jobs(request):
+    user_id = request.user.id
+    context = {}
+    try:
+        account = Account.objects.get(pk=user_id)
+        if account:
+            context['profile_image'] = account.ImageURL
+    except:
+        pass
+
+    return render(request, 'home/ai_jobs.html',context)

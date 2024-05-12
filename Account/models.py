@@ -32,6 +32,7 @@ def get_profile_image_filepath(self, filename):
 def get_default_profile_image():
     return 'default/profile_image.png'
 class Account(AbstractBaseUser):
+    status = [('c', 'client'), ('f', 'freelancer')]
     email                   = models.EmailField(verbose_name="email", max_length=60, unique=True)
     username                = models.CharField(max_length=30, unique=True)
     date_joined             = models.DateTimeField(verbose_name='date joined', auto_now_add=True)
@@ -43,8 +44,10 @@ class Account(AbstractBaseUser):
     profile_image           = models.ImageField(max_length=255,upload_to=get_profile_image_filepath,null=True,blank=True, default = get_default_profile_image)
     hide_email              = models.BooleanField(default=True)
     phone                   = models.CharField(max_length=12, unique=True)
+    user_type               = models.CharField(max_length=50, default='f', choices=status)
+    skills                  = models.TextField(max_length=500, blank=True)
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username','phone',]
+    REQUIRED_FIELDS = ['username','phone','user_type']
  
     objects = MyAccountManager()
     def __str__(self):

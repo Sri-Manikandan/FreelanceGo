@@ -7,7 +7,7 @@ class RegistrationForm(UserCreationForm):
     email = forms.EmailField(max_length=254, help_text='Required. Add a valid email address.')
     class Meta:
         model = Account
-        fields = ('email', 'username', 'password1', 'password2', 'phone', )
+        fields = ('user_type','email', 'username', 'password1', 'password2', 'phone', 'skills')
     def clean_email(self):
         email = self.cleaned_data['email'].lower()
         try:
