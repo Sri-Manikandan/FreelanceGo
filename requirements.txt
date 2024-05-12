@@ -6,9 +6,10 @@ attrs==23.2.0
 certifi==2024.2.2
 charset-normalizer==3.3.2
 dataclasses-json==0.6.6
-Django==4.2.13
+Django==5.0.6
 frozenlist==1.4.1
 greenlet==3.0.3
+gunicorn==22.0.0
 idna==3.7
 jsonpatch==1.33
 jsonpointer==2.4
@@ -20,7 +21,7 @@ langsmith==0.1.57
 marshmallow==3.21.2
 multidict==6.0.5
 mypy-extensions==1.0.0
-numpy==1.24.4
+numpy==1.26.4
 orjson==3.10.3
 packaging==23.2
 pillow==10.3.0
@@ -36,4 +37,5 @@ typing-inspect==0.9.0
 typing_extensions==4.11.0
 tzdata==2024.1
 urllib3==2.2.1
+whitenoise==6.6.0
 yarl==1.9.4
