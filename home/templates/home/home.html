@@ -95,6 +95,24 @@
         .nav-signups li button:hover {
             background-color: #45a049; /* Darker green on hover */
         }
+        #chat-container {
+        position: fixed;
+        bottom: 70px; /* initial position */
+        right: 20px;
+        width: 300px;
+        display: none;
+        }
+
+        #toggle-chat-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        }
+
+        #chat-container.hidden {
+        display: block;
+        }
     </style>
 </head>
 <body style="margin: 0;">
@@ -180,6 +198,25 @@
                 </div>
             </div>
         </div>
+        <div id="chat-container" class="card hidden">
+            <div class="card-header">
+              Chatbot
+            </div>
+            <div class="card-body container-fluid">
+                {{content}}
+            </div>
+            <div class="card-footer">
+              <div class="input-group">
+                <form method="post">{% csrf_token %}
+                    <input type="text" id="chatinput" name="chatinput" class="form-control" placeholder="Type your message...">
+                    <div class="input-group-append">
+                      <button id="send-btn" class="btn" style="background-color: #212529;color: #e8ce4d;">Send</button>
+                    </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <button id="toggle-chat-btn" class="btn" style="background-color: #212529;color: #e8ce4d;">Open Chat</button>
         {% include 'home/snippets/footer.html' %}
         <script src="{% static 'js/main.js' %}"></script>
 </body>
