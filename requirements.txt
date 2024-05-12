@@ -86,7 +86,7 @@ orjson==3.10.3
 overrides==7.7.0
 packaging==23.2
 pathos==0.3.2
-pillow==10.2.0
+pillow==10.3.0
 posthog==3.5.0
 pox==0.3.4
 ppft==1.7.6.8
