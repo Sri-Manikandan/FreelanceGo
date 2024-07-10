@@ -22,7 +22,7 @@ deeplake==3.9.5
 Deprecated==1.2.14
 dill==0.3.8
 distro==1.9.0
-Django==5.0.6
+Django==5.0.7
 dnspython==2.6.1
 email_validator==2.1.1
 fastapi==0.111.0
